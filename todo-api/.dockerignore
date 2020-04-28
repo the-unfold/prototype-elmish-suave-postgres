@@ -1,0 +1,5 @@
+bin
+obj
+Dockerfile
+fantomas-config.json
+README.md

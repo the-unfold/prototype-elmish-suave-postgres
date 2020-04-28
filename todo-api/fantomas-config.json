@@ -1,0 +1,13 @@
+{
+  "IndentSpaceNum": 2,
+  "PageWidth": 120,
+  "SemicolonAtEndOfLine": false,
+  "SpaceBeforeColon": false,
+  "SpaceAfterComma": true,
+  "SpaceBeforeSemicolon": false,
+  "SpaceAfterSemicolon": true,
+  "IndentOnTryWith": false,
+  "SpaceAroundDelimiter": true,
+  "MaxIfThenElseShortWidth": 40,
+  "StrictMode": false
+}
