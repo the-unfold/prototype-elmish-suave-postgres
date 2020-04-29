@@ -16,9 +16,7 @@ services:
       - app-network
 
   webapp:
-    image: nginx
-    volumes:
-      - ./webapp/public:/usr/share/nginx/html:ro
+    build: ./webapp
     networks:
       - app-network
 

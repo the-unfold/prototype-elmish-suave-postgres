@@ -1,0 +1,12 @@
+build/bundle.js
+node_modules
+.fable
+.ionide
+dist-tests
+src/bin
+src/obj
+tests/bin
+tests/obj
+.dockerignore
+.gitignore
+README.md

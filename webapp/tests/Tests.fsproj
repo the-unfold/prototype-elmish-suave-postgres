@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <OutputType>exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.Test.fs" />
+    <Compile Include="Tests.fs" />
+  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='EXPECTO'">
+    <DefineConstants>$(DefineConstants);EXPECTO</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\src\App.fsproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Expecto" Version="9.0.0" />
+    <PackageReference Include="Fable.Mocha" Version="2.8.0" />
+  </ItemGroup>
+</Project>

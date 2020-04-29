@@ -1,7 +1,10 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine3.11 as builder
+RUN apk add tree
 
+# Copy and show files
 ADD . /build
 WORKDIR /build
+RUN tree -a
 
 RUN dotnet publish -c Release -r linux-musl-x64
 
