@@ -1,0 +1,22 @@
+name: e2e test workflow
+on: push
+
+jobs:
+  build:
+    name: e2e test job
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: docker-compose pull
+        run: docker-compose pull
+
+      - name: docker-compose build
+        run: docker-compose build --parallel
+
+      - name: install test dependencies
+        run: dotnet restore e2e-tests/e2e-tests.fsproj
+      
+      - name: run canopy tests
+        run: dotnet run -p e2e-tests/e2e-tests.fsproj
