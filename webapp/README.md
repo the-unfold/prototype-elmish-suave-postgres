@@ -8,4 +8,6 @@
 npm install # устанавливает все зависимости
 npm start # для запуска dev-сервера
 npm run build # для сборки в production
+npm run test-dotnet # быстрый прогон тестов, только CLR
+npm run test-node # прогон тестов через компиляцию в JS
 ```

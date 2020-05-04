@@ -2,28 +2,50 @@ module App
 
 // MODEL
 
-type Model = int
+type Todo = { text: string; isDone: bool }
 
-type Msg =
-| Increment
-| Decrement
+let todos =
+  [ { text = "read one book"
+      isDone = true }
+    { text = "read another book"
+      isDone = false } ]
 
-let init() : Model = 0
+type Model =
+  | FetchSuccess of Todo list
+  | FetchError of string
+  | Loading
+
+type Msg = ToggleDone of Todo
+
+let init (): Model = FetchSuccess todos
 
 // UPDATE
 
-let update (msg:Msg) (model:Model) =
-    match msg with
-    | Increment -> model + 1
-    | Decrement -> model - 1
+let update (msg: Msg) (model: Model) =
+  match msg, model with
+  | ToggleDone t, FetchSuccess todos ->
+      todos
+      |> List.map (fun x -> if x.text = t.text then { x with isDone = not x.isDone } else x)
+      |> FetchSuccess
+  | _ -> model
 
 open Fable.React
 open Fable.React.Props
 
-// VIEW (rendered with React)
+// VIEW
+
+let viewTodo dispatch (t: Todo): ReactElement =
+  div
+    [ Class "todo-item"
+      Style [ if t.isDone then Color "silver" else Color "black" ] ]
+    [ p [ Class "todo-text" ] [ str t.text ]
+      p [ Class "todo-status" ] [ str ("isDone: " + if t.isDone then "true" else "false") ]
+      button
+        [ Class "todo-toggle"
+          OnClick(fun _ -> dispatch <| ToggleDone t) ] [ str "toggle" ] ]
 
 let view model dispatch =
-  div []
-      [ button [ OnClick (fun _ -> dispatch Decrement) ] [ str "-" ]
-        div [] [ str (sprintf "%A" model) ]
-        button [ OnClick (fun _ -> dispatch Increment) ] [ str "+" ] ]
+  match model with
+  | FetchSuccess todos -> div [] [ div [] (List.map (viewTodo dispatch) todos) ]
+  | FetchError e -> str e
+  | Loading -> str "still loading"

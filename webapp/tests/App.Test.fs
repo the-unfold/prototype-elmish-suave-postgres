@@ -9,5 +9,5 @@ open Expecto
 let tests =
     testList "App" [
         testCase "init" <| fun () ->
-            Expect.equal (App.init()) 0 "init value"
+            Expect.equal (App.init()) (App.FetchSuccess App.todos) "init value"
     ]
