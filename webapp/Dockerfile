@@ -1,16 +1,20 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine as builder
-RUN apk add tree
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 as builder
+USER root
 
 # install node
-RUN apk add --update nodejs=12.15.0-r1 npm=12.15.0-r1
+RUN apt-get update
+RUN apt-get -y install curl gnupg
+RUN curl -sL https://deb.nodesource.com/setup_12.x  | bash -
+RUN apt-get -y install nodejs
 
-# Copy and show files
-ADD . /build
 WORKDIR /build
-RUN tree -a
 
-# install project dependencies
-RUN npm install
+# Reinstall dependencies, if changed
+COPY ./package*.json ./
+RUN npm install --no-optional
+
+# Copy sources
+ADD . .
 
 # test via Expecto (.NET, runs fast)
 RUN npm run test-dotnet
