@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   api:
-    build: ./todo-api
+    build: todo-api
     networks:
       - app-network
 
@@ -16,7 +16,8 @@ services:
       - app-network
 
   webapp:
-    build: ./webapp
+    build:
+      context: webapp
     networks:
       - app-network
 

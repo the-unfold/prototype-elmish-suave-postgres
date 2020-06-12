@@ -1,0 +1,17 @@
+version: "3.5"
+
+services:
+  webapp:
+    # выполнить `docker-compose build webapp` при переходе в `dev режим` или изменении зависимостей
+    # build:
+    #   dockerfile: Dockerfile.dev
+    # volumes:
+    #   - ./webapp:/dev-app
+    #   - /dev-app/node_modules # exclude
+    #   - /dev-app/.fable # exclude
+    #   - /dev-app/src/bin # exclude
+    #   - /dev-app/src/obj # exclude
+    #   - /dev-app/tests/bin # exclude
+    #   - /dev-app/tests/obj # exclude
+    # entrypoint: ['npm', 'run', 'test-node'] # для тестов в среде JS
+    # entrypoint: ['npm', 'run', 'test-dotnet'] # для тестов в среде dotnet

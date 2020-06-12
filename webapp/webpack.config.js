@@ -14,7 +14,7 @@ module.exports = {
     devServer: {
         publicPath: "/",
         contentBase: "./public",
-        port: 8080,
+        disableHostCheck: true,
     },
     module: {
         rules: [{

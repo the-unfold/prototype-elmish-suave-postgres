@@ -1,0 +1,20 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1
+USER root
+
+# install node
+RUN apt-get update
+RUN apt-get -y install curl gnupg
+RUN curl -sL https://deb.nodesource.com/setup_12.x  | bash -
+RUN apt-get -y install nodejs
+
+WORKDIR /dev-app
+
+COPY ./package*.json ./
+
+# Copy sources
+ADD . .
+RUN npm install --no-optional
+
+EXPOSE 80
+
+CMD ["npm", "start", "--", "--host", "0.0.0.0", "--port", "80"]
