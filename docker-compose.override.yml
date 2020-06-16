@@ -15,3 +15,11 @@ services:
     #   - /dev-app/tests/obj # exclude
     # entrypoint: ['npm', 'run', 'test-node'] # для тестов в среде JS
     # entrypoint: ['npm', 'run', 'test-dotnet'] # для тестов в среде dotnet
+  api:
+    # выполнить `docker-compose build api` при переходе в `dev режим` или изменении зависимостей
+    # build:
+    #   dockerfile: Dockerfile.dev
+    # volumes:
+    #   - ./todo-api:/dev-app
+    #   - /dev-app/bin # exclude
+    #   - /dev-app/obj # exclude

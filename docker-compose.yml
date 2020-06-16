@@ -2,12 +2,16 @@ version: '3.5'
 
 services:
   api:
-    build: todo-api
+    build:
+      context: todo-api
     networks:
       - app-network
 
   nginx:
     image: 'nginx:1.18.0-alpine'
+    depends_on:
+      - api
+      - webapp
     volumes:
       - './nginx/conf.d/:/etc/nginx/conf.d/'
     ports:

@@ -1,0 +1,10 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1-alpine3.11
+
+ADD . /dev-app
+WORKDIR /dev-app
+
+EXPOSE 8080
+
+RUN dotnet restore
+
+CMD ["dotnet", "watch", "run"]
