@@ -1,0 +1,11 @@
+// Получить всех пользователей из таблицы
+select * from users;
+// Найти юзеров, радиус которых пересекает радиус юзера с ИД=3, радиусы пересечения - 1000 метров
+select search_intersected(3, 1000);
+select search_intersected(4, 100);
+
+// Добавить нового юзера (если без ОРМ), в Location - координаты
+INSERT INTO users
+    (name, location)
+values
+    ('User Name', ST_GeographyFromText('POINT(55.019637 82.922654)'))

@@ -25,6 +25,15 @@ services:
     networks:
       - app-network
 
+  database:
+    build:
+      context: db
+    ports: 
+      - '5432:5432'
+    networks: 
+        - app-network
+
+
 networks:
   app-network:
     driver: bridge
